@@ -2,7 +2,6 @@ import Router, { useRouter } from "next/router";
 
 export default function Page() {
   const { query } = useRouter();
-  const dynamicPart = query["dynamic-part"];
 
   return (
     <div>
@@ -13,7 +12,8 @@ export default function Page() {
               const newSegments = query.segments
                 .map((s, j) => (j == i ? Number(s) - 1 : s))
                 .join("/");
-              void Router.replace(`/${dynamicPart}/${newSegments}`);
+
+              void Router.replace(`/${query["dynamic-part"]}/${newSegments}`);
             }}
           >
             -
@@ -24,7 +24,8 @@ export default function Page() {
               const newSegments = query.segments
                 .map((s, j) => (j == i ? Number(s) + 1 : s))
                 .join("/");
-              void Router.replace(`/${dynamicPart}/${newSegments}`);
+
+              void Router.replace(`/${query["dynamic-part"]}/${newSegments}`);
             }}
           >
             +
